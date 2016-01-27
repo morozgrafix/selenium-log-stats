@@ -18,7 +18,6 @@ class SeleniumLogParser
       match = line.match(REGEXP)
 
       next unless match
-      # puts "#{match[1]} - #{match[2]} - #{match[3]}"
 
       case match[2]
       when 'COMMAND'
@@ -29,8 +28,6 @@ class SeleniumLogParser
       when 'RESPONSE'
         @time_end = match[1].to_f
         time_diff = @time_end - @time_start
-        # puts "#{@log.lineno} - #{match[1]} - #{match[3]} -> "\
-        #   "#{@time_start}:#{@time_end} -> #{time_diff.round(3)}"
         @commands[match[3]] << time_diff
       end
     end
